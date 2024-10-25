@@ -2,8 +2,8 @@ pageextension 51002 VendrExt extends "Vendor Card"
 {
     layout
     {
-         addafter("Address & Contact")
-         {
+        addafter("Address & Contact")
+        {
             group("Insuarance Details")
             {
                 field("CompanyName"; Rec."Company Name")
@@ -13,7 +13,7 @@ pageextension 51002 VendrExt extends "Vendor Card"
                     Editable = IsEditable;
 
                 }
-                field(Status;Rec.Status)
+                field(Status; Rec.Status)
                 {
                     ApplicationArea = All;
                     Caption = 'Status';
@@ -24,20 +24,20 @@ pageextension 51002 VendrExt extends "Vendor Card"
                     Caption = 'Companys Mail';
                     Editable = IsEditable;
                 }
-                
+
             }
-         }
-         addlast(General)
-         {
-            field("VendorType";Rec."Vendor Types")
+        }
+        addlast(General)
+        {
+            field("VendorType"; Rec."Vendor Types")
             {
                 ApplicationArea = All;
                 Caption = 'Vendor Type';
                 NotBlank = TRUE;
             }
-         }
+        }
     }
-     var
+    var
         IsEditable: Boolean;
 
     trigger OnAfterGetRecord()

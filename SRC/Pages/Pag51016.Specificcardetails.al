@@ -1,7 +1,4 @@
-using System.Device;
-#pragma warning disable AL0789
-using System.IO;
-#pragma warning restore AL0789
+
 page 51016 "Specific car details"
 {
  

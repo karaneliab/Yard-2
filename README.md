@@ -108,4 +108,29 @@
         // Download the temporary file
         FileManagement.DownloadTempFile(TempFilePath);
     end;
+     // trigger OnAction()
+                // var
+                //     CarLine: Record "Car Line";
+                // begin
+                //     // Check if the document is approved first
+                //     if Rec.Status <> Rec.Status::Approved then begin
+                //         Message('Status must be set to Approved before posting.');
+                //         exit;
+                //     end;
+
+                //     // Confirm if user wants to proceed with posting
+                //     if not Confirm('Do you want to post the car receipt?', true) then begin
+                //         Message('Posting cancelled.');
+                //         exit;
+                //     end;
+
+                //     // Call the posting logic
+                //     Message('Attempting to post car details for Document No. %1', Rec."No");
+                //     Rec.PostCarDetails(Rec);
+                //     Message('Post successful for Document No. %1', Rec."No");
+
+                //     // Optionally open Purchase Invoices after successful posting
+                //     if Confirm('Do you want to open Purchase Invoice?', false) then
+                //         Page.Run(Page::"Purchase Invoices");
+                // end;
   }

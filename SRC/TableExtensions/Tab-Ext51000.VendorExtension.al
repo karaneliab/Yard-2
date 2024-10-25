@@ -12,7 +12,7 @@ tableextension 51000 "VendorExtension" extends Vendor
             Caption = 'Company Name';
             DataClassification = ToBeClassified;
         }
-        
+
         field(90103; "Company's Mail"; Text[40])
         {
             Caption = 'Company''s Mail';
@@ -28,19 +28,16 @@ tableextension 51000 "VendorExtension" extends Vendor
             end;
         }
     }
-   procedure "Vendor Validation"()
-   begin
-    if "Vendor Types" = "Vendor Types"::Insurer then begin
-        if "Company Name" = '' then
-        Error('Company Name is required for Insurer');
-        if "Company's Mail" = '' then
-        Error('Company''s Mail is required for Insurer');
-        
-   end 
+    procedure "Vendor Validation"()
+    begin
+        if "Vendor Types" = "Vendor Types"::Insurer then begin
+            if "Company Name" = '' then
+                Error('Company Name is required for Insurer');
+            if "Company's Mail" = '' then
+                Error('Company''s Mail is required for Insurer');
+
+        end
 
     end;
-        
-        
 
-   
 }

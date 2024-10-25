@@ -1,6 +1,3 @@
-namespace YardManagement.YardManagement;
-
-using Microsoft.Sales.Customer;
 
 tableextension 51006 "Customer Extension" extends Customer
 {

@@ -1,8 +1,3 @@
-namespace YardManagement.YardManagement;
-
-using System.IO;
-using System.Utilities;
-
 xmlport 51002 "Export Car Details"
 {
     Caption = 'Export Car Details';

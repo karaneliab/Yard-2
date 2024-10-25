@@ -1,7 +1,3 @@
-namespace YardManagement.YardManagement;
-
-using System.Security.User;
-using Microsoft.HumanResources.Employee;
 
 tableextension 51004 UserSetup extends "User Setup"
 {

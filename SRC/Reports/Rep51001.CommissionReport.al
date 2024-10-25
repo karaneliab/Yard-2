@@ -1,9 +1,3 @@
-namespace YardManagement.YardManagement;
-
-using Microsoft.HumanResources.Employee;
-using Microsoft.Sales.Document;
-using Microsoft.Sales.History;
-using Microsoft.Foundation.Company;
 
 report 51001 "Commission Report"
 {
@@ -20,10 +14,10 @@ report 51001 "Commission Report"
             column(No; "No.")
             {
             }
-             column(FORMAT_TODAY_0_4_; Format(Today, 0, 4))
+            column(FORMAT_TODAY_0_4_; Format(Today, 0, 4))
             {
             }
-             column(COMPANYNAME; COMPANYPROPERTY.DisplayName())
+            column(COMPANYNAME; COMPANYPROPERTY.DisplayName())
             {
             }
             column(FirstName; "First Name")
@@ -44,32 +38,32 @@ report 51001 "Commission Report"
             {
 
             }
-             column(Logo;CompanyInformation.Picture)
+            column(Logo; CompanyInformation.Picture)
             {
-                
+
             }
-            Column(Address;CompanyInformation.Address)
+            Column(Address; CompanyInformation.Address)
             {
-                   IncludeCaption = true;
+                IncludeCaption = true;
             }
-              Column(Home_Page;CompanyInformation."Home Page")
+            Column(Home_Page; CompanyInformation."Home Page")
             {
-                 IncludeCaption = true;
+                IncludeCaption = true;
             }
-              Column(City;CompanyInformation.City)
+            Column(City; CompanyInformation.City)
             {
-                  IncludeCaption = true;
+                IncludeCaption = true;
             }
-              Column(Phone_Number;CompanyInformation."Phone No.")
+            Column(Phone_Number; CompanyInformation."Phone No.")
             {
-                  IncludeCaption = true;
+                IncludeCaption = true;
             }
-            column(Mailing;CompanyInformation."E-Mail")
+            column(Mailing; CompanyInformation."E-Mail")
             {
-                 IncludeCaption = true;
+                IncludeCaption = true;
             }
 
-            column(Postal_Code;CompanyInformation."Post Code")
+            column(Postal_Code; CompanyInformation."Post Code")
             {
 
             }
@@ -96,11 +90,11 @@ report 51001 "Commission Report"
             //     }
 
             // }
-            dataitem("Commission Ledger Entries";"Commission Ledger Entries")
+            dataitem("Commission Ledger Entries"; "Commission Ledger Entries")
             {
                 DataItemLink = "Branch" = FIELD("Yard Branch");
                 DataItemLinkReference = Employee;
-                column(CommissionAmount;CommissionAmount)
+                column(CommissionAmount; CommissionAmount)
                 {
                     IncludeCaption = true;
                 }
@@ -120,13 +114,14 @@ report 51001 "Commission Report"
 
         Title: Label 'commission  Report';
 
-                CompanyInformation: Record "Company Information";
-        trigger OnPreReport()
-        begin
-            CompanyInformation.Get();   
-            CompanyInformation.CalcFields(CompanyInformation.Picture);
+        CompanyInformation: Record "Company Information";
+
+    trigger OnPreReport()
+    begin
+        CompanyInformation.Get();
+        CompanyInformation.CalcFields(CompanyInformation.Picture);
 
 
-        end;
+    end;
 
 }

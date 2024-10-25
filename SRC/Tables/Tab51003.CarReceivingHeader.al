@@ -14,7 +14,7 @@ table 51003 "Car Recieving Header"
 
             trigger OnValidate()
             begin
-                // TestNoSeries();
+                
                 if "No" <> xRec."No" THEN begin
                     PurchSetup.Get();
                     PurchSetup.TestField("Car Receiving Nos.");
@@ -34,7 +34,7 @@ table 51003 "Car Recieving Header"
         field(7; Description; Text[250])
         {
             Caption = 'Description';
-            // DataClassification = AccountData;
+            
             DataClassification = CustomerContent;
 
 
@@ -94,13 +94,13 @@ table 51003 "Car Recieving Header"
         }
     }
 
-    local procedure TestStatus()
-    begin
-        if Status <> Status::"Approved" then
-            exit;
+    // local procedure TestStatus()
+    // begin
+    //     if Status <> Status::"Approved" then
+    //         exit;
 
-        "Last Released Date" := CurrentDateTime;
-    end;
+    //     "Last Released Date" := CurrentDateTime;
+    // end;
 
     local procedure TestOnRelease()
     begin
@@ -153,90 +153,7 @@ table 51003 "Car Recieving Header"
 
     end;
 
-    // procedure PostCarDetails(var Header: Record "Car Recieving Header")
-    // var
-    //     CarHeader: Record "Car Recieving Header";
-    //     FixedAsset: Record "Fixed Asset";
-    //     CarLine: Record "Car Line";
-    //     FADepreciationBook: Record "FA Depreciation Book";
-    //     ExistingFixedAsset: Record "Fixed Asset";
-    //     PurchaseLine: Record "Purchase Line";
-    //     NoSeriesMgt: Codeunit NoSeriesManagement;
-    //     PurchSetup: Record "Purchases & Payables Setup";
-    //     FASetup: Record "FA Setup";
 
-
-    // begin
-    //     // Posting logic here
-    //     FASetup.Get();
-    //     CarLine.Reset();
-    //     CarLine.SetRange("Document No.", Header.No);
-    //     if CarLine.FindSet() then begin
-    //         repeat
-    //             if CarLine."Car Make" = '' then
-    //                 Error('Enter the car make details');
-    //             if CarLine."Car Model" = '' then
-    //                 Error('Enter the car model details');
-    //             if CarLine."Chassis Number" = '' then
-    //                 Error('Enter the chasis number');
-
-    //             if CarLine."Country Of Registration" = '' then
-    //                 Error('Enter the country of registration ');
-    //             if CarLine."Checked In By" = '' then
-    //                 Error('Enter the checked in by field');
-    //             if CarLine."FA Class Code" = '' then
-    //                 Error('Enter the Fa class code to get correct subclass with default posting group');
-    //                 FixedAsset.Init();
-    // //                 //  NoSeriesMgt.InitSeries(PurchSetup."FA Nos", '', 0D, FixedAsset."No.", CarLine."FA No");
-    // //                 // NoSeriesMgt.InitSeries(FASetup."Fixed Asset Nos.", '', 0D, FixedAsset."No.", CarLine."FA No");
-    // CarLine."FA No" := NoSeriesMgt.GetNextNo(FASetup."Fixed Asset Nos.", CarHeader."Date", true);
-    //                 // CarLine."FA No" := NoSeriesMgt.GetNextNo(FASetup."Fixed Asset Nos.", CarHeader."Date", true);
-    //                  CarLine."FA No" := FixedAsset."No.";
-
-    //                 //  NoSeriesMgt.GetNextNo(FASetup."Fixed Asset Nos.",  0D,TRUE);
-    //                 //  
-    //                 //  CarLine."FA No" := NoSeriesMgt.GetNextNo(FASetup."Fixed Asset Nos.", CarHeader."Date", true);
-
-
-    //                 FixedAsset.ChassisNo := CarLine."Chassis Number";
-    //                 FixedAsset."Car Make" := CarLine."Car Make";
-    //                 FixedAsset."Description" := CarLine."Chassis Number";
-    //                 FixedAsset."Model" := CarLine."Car Model";
-    //                 FixedAsset."RegNo" := CarLine.RegNo;
-    //                 FixedAsset."Responsible Employee" := CarLine."Checked In By";
-    //                 FixedAsset."Year of Manufacture" := CarLine."Year of Make";
-    //                 FixedAsset."Country Of First Registration" := CarLine."Country Of Registration";
-    //                 FixedAsset."FA Location Code" := CarLine.YardBranch;
-    //                 FixedAsset."Insurance Company" := CarLine."Insurance Company";
-    //                 FixedAsset."FA Class Code" := CarLine."FA Class Code";
-    //                 FixedAsset."Vendor No." := CarLine."Received From";
-    //                 FixedAsset."FA Subclass Code" := CarLine."FA Subclass Code";
-    //                 FixedAsset.Validate("Car Insured", CarLine."Car Insured");
-    //                 FixedAsset.Insert();
-    //                 CarLine."FA No" := FixedAsset."No.";
-    //                 CarLine.Modify(true);
-
-
-
-    //                 // CarLine.Modify(true);
-
-    //                 FADepreciationBook.Init();
-    //                 FADepreciationBook.Validate("Depreciation Book Code", CarLine."Depreciation Book");
-    //                 FADepreciationBook.Validate("Depreciation Starting Date", CarLine."Depreciation Starting Date");
-    //                 FADepreciationBook.Validate("Depreciation Ending Date", CarLine."Depreciation Ending Date");
-    //                 FADepreciationBook.Validate("No. of Depreciation Years", CarLine."No of Depreciation Years");
-    //                 FADepreciationBook.Validate("FA Posting Group", CarLine."FA Posting Group");
-    //                 FADepreciationBook.Validate("FA No.", CarLine."FA No");
-    //                 FADepreciationBook.Insert(true);
-
-
-    //         until CarLine.Next() = 0;
-    //             end;
-
-
-
-
-    // end;
     procedure PostCarDetails(var Header: Record "Car Recieving Header")
     var
         CarHeader: Record "Car Recieving Header";
@@ -260,6 +177,7 @@ table 51003 "Car Recieving Header"
 
         if CarLine.FindSet() then begin
             repeat
+               
                 if CarLine."Car Make" = '' then
                     Error('Enter the car make details');
                 if CarLine."Car Model" = '' then
@@ -308,13 +226,20 @@ table 51003 "Car Recieving Header"
                 CarLine.Modify(true);
 
                 FADepreciationBook.Init();
-                FADepreciationBook.Validate("Depreciation Book Code", CarLine."Depreciation Book");
-                FADepreciationBook.Validate("Depreciation Starting Date", CarLine."Depreciation Starting Date");
-                FADepreciationBook.Validate("Depreciation Ending Date", CarLine."Depreciation Ending Date");
-                FADepreciationBook.Validate("No. of Depreciation Years", CarLine."No of Depreciation Years");
-                FADepreciationBook.Validate("FA Posting Group", CarLine."FA Posting Group");
-                FADepreciationBook.Validate("FA No.", CarLine."FA No");
+                // FADepreciationBook.Validate("Depreciation Book Code", CarLine."Depreciation Book");
+                // FADepreciationBook.Validate("Depreciation Starting Date", CarLine."Depreciation Starting Date");
+                // FADepreciationBook.Validate("Depreciation Ending Date", CarLine."Depreciation Ending Date");
+                // FADepreciationBook.Validate("No. of Depreciation Years", CarLine."No of Depreciation Years");
+                // FADepreciationBook.Validate("FA Posting Group", CarLine."FA Posting Group");
+                // FADepreciationBook.Validate("FA No.", CarLine."FA No");
+                FADepreciationBook."Depreciation Book Code" := CarLine."Depreciation Book";
+                FADepreciationBook."Depreciation Starting Date" := CarLine."Depreciation Starting Date";
+                FADepreciationBook."Depreciation Ending Date" := CarLine."Depreciation Ending Date";
+                FADepreciationBook."No. of Depreciation Years" := CarLine."No of Depreciation Years";
+                FADepreciationBook."FA Posting Group" := CarLine."FA Posting Group";
+                FADepreciationBook."FA No." := CarLine."FA No";
                 FADepreciationBook.Insert(true);
+
 
             until CarLine.Next() = 0;
         end;
@@ -414,8 +339,8 @@ table 51003 "Car Recieving Header"
 
                 end else
                     Error('Error');
-            
-          until CarLine.Next() = 0;
+
+            until CarLine.Next() = 0;
 
         end;
     end;

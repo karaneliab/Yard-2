@@ -201,8 +201,6 @@ table 51001 "Car Line"
         value: Integer;
     begin
 
-        TestStatus();
-        // CommisionCalculate()
         //* Defaulting FA DEP book
         if FADepreciationBook.FindFirst() then begin
             "Depreciation Book" := FADepreciationBook.Code;
@@ -219,13 +217,7 @@ table 51001 "Car Line"
         end;
         //* Defaulting Car Insurance
         "Car Insured" := true;
-        //* Defaulting Vendor
-        // InsuranceCompany.SetRange("Vendor Types", VendorTypeEnum::Supplier);
-        // if InsuranceCompany.FindFirst() then begin
-        //     "Received From" := InsuranceCompany."No.";
-        // end else begin
-        //     Error('No Vendor Found');
-        // end;
+         
         //* Defaulting Fa Posting Group
         if FaPostingGroup.FindFirst() then begin
             "FA Posting Group" := FaPostingGroup.Code;
@@ -265,53 +257,19 @@ table 51001 "Car Line"
         end else begin
             Error('No FA Subclass records found for the selected FA Class Code.');
         end;
-        // CarReciv.Reset();
-        // // CarLine.SetRange("Document No.", "No");
-        // if CarReciv.FindFirst() then begin
-        // "Buying Price" := CarReciv."Buying Price";
-        // end;
+
         "Depreciation Starting Date" := Today;
         "Depreciation Ending Date" := CalcDate('+1Y', "Depreciation Starting Date");
         if "Chassis Number" <> xRec."Chassis Number" then begin
-            // Check if the chassis number exists in the Car Line table (since ChassisNo is the primary key)
+           
             if Exists("Chassis Number") then
                 Error('A car with the provided chassis number %1 already exists in the Car Line table.', "Chassis Number");
         end;
     end;
-
-
-    trigger OnModify()
-    begin
-        TestStatus();
-        // CommisionCalculate()
-
-    end;
-
-    trigger OnDelete()
-    begin
-        TestStatus();
-    end;
-
-    trigger OnRename()
-    begin
-        TestStatus();
-
-    end;
-
-
     var
         StatusCannotBeReleasedErr: Label 'status cannot be %1 .', comment = '%1 -  status field value';
         EmployeeStatusErr: Label 'The Employee Is.', Comment = '%1 - status field  value';
 
-    local procedure TestStatus()
-
-    var
-        CarHeader: Record "Car Recieving Header";
-    begin
-        if CarHeader.Get(Rec."Document No.") then
-            if CarHeader.Status = CarHeader.Status::"Approved" then
-                Error(StatusCannotBeReleasedErr, CarHeader.Status);
-    end;
 
 
     local procedure EmployeeStatus()
@@ -322,34 +280,6 @@ table 51001 "Car Line"
             if EmployeeStatus.Status = EmployeeStatus.Status::"Inactive" then
                 Error(EmployeeStatusErr, EmployeeStatus.Status);
     end;
-
-
-    // procedure CommisionCalculate()
-    // var
-    //     CarReceivingHeader: Record "Car Recieving Header";
-    //     CommissionRate: Decimal;
-    //     CarMakeCommission: Record "Commission Rate";
-    //     BuyingPrice: Decimal;
-    // begin
-    //     if CarReceivingHeader.Get(Rec."Document No.") then begin
-    //         BuyingPrice := CarReceivingHeader."Buying Price";
-
-
-    //         if CarMakeCommission.Get(Rec."Car Make") then begin
-    //             CommissionRate := CarMakeCommission."Commission Rate";
-
-
-    //             "Commission Amount" := CalculateCommissionAmount(CommissionRate, BuyingPrice);
-    //         end;
-    //     end;
-    // end;
-
-    // procedure CalculateCommissionAmount(CommissionRate: Decimal; BuyingPrice: Decimal): Decimal
-    // begin
-    //     exit((BuyingPrice * CommissionRate) / 100);
-    // end;
-
-
 
     var
 

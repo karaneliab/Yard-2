@@ -38,9 +38,9 @@ pageextension 51000 "Employee card" extends "Employee Card"
 
                 trigger OnValidate()
                 begin
-                  
+
                     if Rec."ID Number" <> '' then
-                        Rec.Passport := ''; 
+                        Rec.Passport := '';
                     CurrPage.Update();
                 end;
             }
@@ -51,9 +51,9 @@ pageextension 51000 "Employee card" extends "Employee Card"
                 ToolTip = 'Specifies the Employee Passport.', Comment = '%';
                 trigger OnValidate()
                 begin
-                    
+
                     if Rec.Passport <> '' then
-                        Rec."ID Number" := ''; 
+                        Rec."ID Number" := '';
                     CurrPage.Update();
                 end;
             }
@@ -73,7 +73,7 @@ pageextension 51000 "Employee card" extends "Employee Card"
                 ApplicationArea = All;
                 Visible = true;
                 ToolTip = 'Specifies the Employee Personal Email.', Comment = '%';
-               
+
             }
             field("Phone No"; Rec."Phone No.")
             {
@@ -86,19 +86,19 @@ pageextension 51000 "Employee card" extends "Employee Card"
                 var
                     TyperHelper: Codeunit "Type Helper";
                 begin
-                    if not TyperHelper.IsPhoneNumber( Rec."Phone No.") then
-                        Error( Rec."Phone No.", PhoneNoCannotContainLettersErr);
+                    if not TyperHelper.IsPhoneNumber(Rec."Phone No.") then
+                        Error(Rec."Phone No.", PhoneNoCannotContainLettersErr);
                 end;
-               
+
             }
-             
-            
+
+
             field("Outstanding Commission"; Rec."Outstanding Commission")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Outstanding Commission.', Comment = '%';
             }
-            field("Comision Paid";Rec."Comision Paid")
+            field("Comision Paid"; Rec."Comision Paid")
             {
                 ApplicationArea = All;
                 Tooltip = 'Specifies the Commission amount paid';
@@ -108,8 +108,8 @@ pageextension 51000 "Employee card" extends "Employee Card"
 
 
     }
-    
-     actions
+
+    actions
     {
         addafter(Dimensions)
         {
@@ -119,27 +119,27 @@ pageextension 51000 "Employee card" extends "Employee Card"
             action("Employee Details")
             {
                 // RunObject = report "Employee Details" ;
-              
+
                 ApplicationArea = Basic, Suite;
                 Tooltip = 'Specifies  Employee details ', Comment = ' %1';
                 RunPageMode = View;
-                
+
 
             }
         }
     }
 
-   
+
     trigger OnInsertRecord(BelowxRec: Boolean): Boolean
     begin
         if Rec."ID Number" <> '' then
-            Rec.VALIDATE(Passport, ''); // Ensure Passport is disabled if ID Number is entered
+            Rec.VALIDATE(Passport, '');
 
         if Rec.Passport <> '' then
-            Rec.VALIDATE("ID Number", ''); // Ensure ID Number is disabled if Passport is entered
+            Rec.VALIDATE("ID Number", '');
     end;
 
-   
+
 
     var
         PhoneNoCannotContainLettersErr: Label 'must not contain letters';

@@ -1,5 +1,3 @@
-namespace YardManagement.YardManagement;
-
 xmlport 51001 "Import Car Details"
 {
     Caption = 'Import Car Details';
@@ -15,8 +13,6 @@ xmlport 51001 "Import Car Details"
                 XmlName = 'CarLine';
                 AutoReplace = false;
 
-                //  LinkTable = <field>;/.//
-                // LinkFields =Car Make               
 
 
                 fieldelement(RegNo; CarLine.RegNo)
@@ -40,9 +36,9 @@ xmlport 51001 "Import Car Details"
                 {
 
                 }
-                fieldelement(Buying_Price;CarLine."Buying Price")
+                fieldelement(Buying_Price; CarLine."Buying Price")
                 {
-                    
+
                 }
                 fieldelement(ChasisNo; CarLine."Chassis Number")
                 {
@@ -60,8 +56,7 @@ xmlport 51001 "Import Car Details"
                 {
 
                 }
-                // fieldelement(DocumentNo;CarLine."Document No.")
-                // {}
+
 
                 trigger OnAfterInitRecord()
                 begin

@@ -24,7 +24,7 @@ pageextension 51001 "Fixed Assets" extends "Fixed Asset Card"
                     ApplicationArea = ALL;
                     ToolTip = 'Specifies the Insuarance Company.', Comment = '%';
 
-                  
+
                 }
                 field("RegNo"; Rec.RegNo)
                 {
@@ -41,7 +41,7 @@ pageextension 51001 "Fixed Assets" extends "Fixed Asset Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the Year of Manufacture.', Comment = '%';
                 }
-                FIELD("Buying Price";Rec."Buying Price")
+                FIELD("Buying Price"; Rec."Buying Price")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Speifies price';
@@ -53,7 +53,7 @@ pageextension 51001 "Fixed Assets" extends "Fixed Asset Card"
 
                     trigger OnValidate()
                     begin
-                        
+
                         CurrPage.Update();
                     end;
 
@@ -63,14 +63,14 @@ pageextension 51001 "Fixed Assets" extends "Fixed Asset Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the Country Of First Registration.', Comment = '%';
                 }
-                field(AcquisitionCost;Rec.AcquisitionCost)
+                field(AcquisitionCost; Rec.AcquisitionCost)
                 {
                     ToolTip = 'Specifies the cost of the acquisition cost';
                     trigger OnDrillDown()
                     begin
                         FADepreciationBook.DrillDownOnBookValue();
                     end;
-                    
+
                 }
 
 
@@ -109,6 +109,6 @@ pageextension 51001 "Fixed Assets" extends "Fixed Asset Card"
         }
 
     }
-    
+
 
 }

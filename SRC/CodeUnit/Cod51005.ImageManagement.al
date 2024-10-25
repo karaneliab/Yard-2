@@ -1,9 +1,3 @@
-namespace TableIntroduction.TableIntroduction;
-
-using Microsoft.Inventory.Item;
-using System.Environment;
-using Microsoft.FixedAssets.FixedAsset;
-
 
 
 codeunit 51005 ImageManagement

@@ -25,7 +25,7 @@ table 51002 "Model"
             Caption = ' Name';
 
         }
-    
+
 
 
     }
@@ -39,13 +39,6 @@ table 51002 "Model"
     }
     trigger OnInsert()
     begin
-        // if ID = '' THEN
-        //     PurchSetup.Get();
-        // PurchSetup.TestField("Car Model Nos.");
-        // NoSeriesMgt.
-        // if "ID" = '' then
-        //     PurchSetup.Get();
-        // NoSeriesMgt.InitSeries(PurchSetup."Car Model Nos.", xRec."No. Series", 0D, "ID", "No. Series");
 
     end;
 

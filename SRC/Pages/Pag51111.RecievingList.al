@@ -1,4 +1,4 @@
-page 51006 "Recieving List"
+page 51111 "Recieving List"
 {
     ApplicationArea = All;
     Caption = 'Cars Receiving List';

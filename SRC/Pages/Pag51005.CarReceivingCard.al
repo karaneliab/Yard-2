@@ -76,6 +76,7 @@ page 51005 "Car Receiving Card"
 
         }
     }
+    
     actions
     {
 
@@ -87,15 +88,29 @@ page 51005 "Car Receiving Card"
             {
                 Caption = 'P&ost';
                 Image = PostOrder;
+
+               
                 trigger OnAction()
                 var
                     CarLine: Record "Car Line";
                     PurchaseHeader: Record "Purchase Header";
                     PurchaseInvoiceNo: Code[20];
-                    // CustomWorkflowMgmt: Codeunit "Custom Workflow Mgmt";
+                    ApprovalWorkflow: Codeunit "Car Approval Workflows";
                     RecRef: RecordRef;
                     VendorNo: Code[20];
+                    CarRecivHead: Record "Car Recieving Header";
                 begin
+                    if Rec.Status <> Rec.Status::Approved then begin
+
+                        if Confirm('The document is not approved. Do you want to send it for approval?', true, false) then begin
+                            RecRef.GetTable(Rec);
+                            if ApprovalWorkflow.CheckCarReceivingApprovalsWorkflowEnabled(RecRef) then
+                                ApprovalWorkflow.OnSendCarReceivingWorkflowForApproval(RecRef);
+                            Message('The document has been sent for approval.');
+                        end else
+                            Message('Posting cancelled.');
+                        exit;
+                    end;
 
                     if not Confirm('Do you want to post the car receipt?', true) then
                         Message('Posting cancelled.')
@@ -106,27 +121,10 @@ page 51005 "Car Receiving Card"
                         if Confirm('Do you want to open Purchase Invoice', FALSE) then
                             Page.Run(Page::"Purchase Invoices");
 
-
-
-                        // CarLine.SetRange("Document No.", Rec.No);
-                        // if CarLine.FindFirst() then begin
-                        //     VendorNo := CarLine."Received From";
-
-                        //     // Find the latest purchase invoice for the vendor
-                        //     PurchaseHeader.SetRange("Buy-from Vendor No.", VendorNo);
-                        //     PurchaseHeader.SetRange("Posting Date", Rec."Date");
-
-                        //     if PurchaseHeader.FindFirst() then begin
-                        //         PurchaseInvoiceNo := PurchaseHeader."No.";
-
-
-                        //         Page.Run(Page::"Purchase Invoice", PurchaseHeader);
-                        //     end else
-                        //         Message('No purchase invoice was found for vendor: %1', VendorNo);
-                        // end else
-                        //     Message('No car line record found for the current receiving header.');
                     end;
                 end;
+
+
             }
 
 
@@ -162,23 +160,155 @@ page 51005 "Car Receiving Card"
 
                 end;
             }
-            // action(ExpzortToExcel)
-            // {
-            //     Caption = 'Export to Excel';
-            //     Image = Export;
-            //     // Promoted = true;
-            //     // PromotedCategory = Process;
+           group("Request Approval")
+            {
+                Caption = 'Request Approval';
+                Image = SendApprovalRequest;
 
-            //     trigger OnAction()
-            //      var
-            //         ExportCars: XmlPort "Export Car Details";
-            //     begin
-            //        ExportCars.ExportToExcel();
-            //     end;
-            // }
+                action(SendApprovalRequest)
+                {
+                    Caption = 'Send Approval Request';
+                    ToolTip = 'Send an approval request with the specified settings.', Comment = '%';
+                    Image = SendApprovalRequest;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    Visible = true;
+                    trigger OnAction()
+
+                    Var
+                        ApprovalWorkflow: Codeunit "Car Approval Workflows";
+                        RecRef: RecordRef;
+                        CarRecivHead: Record "Car Recieving Header";
+                    begin
+                        
+                          RecRef.GetTable(Rec);
+                        if ApprovalWorkflow.CheckCarReceivingApprovalsWorkflowEnabled(RecRef) then
+                            ApprovalWorkflow.OnSendCarReceivingWorkflowForApproval(RecRef);
+                       
+
+                      
+                
+                    end;
+
+
+
+                }
+                action(CancelApprovalRequest)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Cancel Approval Re&quest';
+                    Image = CancelApprovalRequest;
+                    ToolTip = 'Cancel the approval request.';
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    Visible = true;
+                    trigger OnAction()
+
+                    Var
+                         ApprovalWorkflow: Codeunit "Car Approval Workflows";
+                        RecRef: RecordRef;
+                    begin
+                        RecRef.GetTable(Rec);
+                        ApprovalWorkflow.OnCancelCarReceivingWorkflowForApproval(RecRef);
+
+
+
+                    end;
+                }
+            }
 
         }
+        area(Creation)
+        {
+            group(Approval)
+            {
+                Caption = 'Approval';
+                action(Approve)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Approve';
+                    Image = Approve;
+                    ToolTip = 'Approve the requested changes.';
+                    Promoted = true;
+                    PromotedCategory = New;
+                    Visible = OpenApprovalEntriesExistCurrUser;
+                    trigger OnAction()
+                    begin
+                        ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
+                    end;
+                }
+                action(Reject)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Reject';
+                    Image = Reject;
+                    ToolTip = 'Reject the approval request.';
+                    Visible = OpenApprovalEntriesExistCurrUser;
+                    Promoted = true;
+                    PromotedCategory = New;
+                    trigger OnAction()
+                    begin
+                        ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
+                    end;
+                }
+                action(Delegate)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Delegate';
+                    Image = Delegate;
+                    ToolTip = 'Delegate the approval to a substitute approver.';
+                    Visible = OpenApprovalEntriesExistCurrUser;
+                    Promoted = true;
+                    PromotedCategory = New;
+                    trigger OnAction()
+
+                    begin
+                        ApprovalsMgmt.DelegateRecordApprovalRequest(Rec.RecordId);
+                    end;
+                }
+                action(Comment)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Comments';
+                    Image = ViewComments;
+                    ToolTip = 'View or add comments for the record.';
+                    Visible = OpenApprovalEntriesExistCurrUser;
+                    Promoted = true;
+
+                    PromotedCategory = New;
+
+
+                    trigger OnAction()
+                    begin
+                        ApprovalsMgmt.GetApprovalComment(Rec);
+
+                    end;
+                }
+                action(Approvals)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Approvals';
+                    Image = Approvals;
+                    ToolTip = 'View approval requests.';
+                    Promoted = true;
+                    PromotedCategory = New;
+                    Visible = HasApprovalEntries;
+                    trigger OnAction()
+                    begin
+                        ApprovalsMgmt.OpenApprovalEntriesPage(Rec.RecordId);
+                    end;
+                }
+            }
+        }
+
     }
+    trigger OnAfterGetCurrRecord()
+    begin
+        OpenApprovalEntriesExistCurrUser := ApprovalsMgmt.HasOpenApprovalEntriesForCurrentUser(Rec.RecordId);
+        OpenApprovalEntriesExist := ApprovalsMgmt.HasOpenApprovalEntries(Rec.RecordId);
+        CanCancelApprovalForRecord := ApprovalsMgmt.CanCancelApprovalForRecord(Rec.RecordId);
+        HasApprovalEntries := ApprovalsMgmt.HasApprovalEntries(Rec.RecordId);
+    end;
 
     var
         NoFieldVisible: Boolean;
@@ -188,4 +318,7 @@ page 51005 "Car Receiving Card"
         , HasApprovalEntries : Boolean;
         ApprovalsMgmt: Codeunit System.Automation."Approvals Mgmt.";
         WorkflowWebhookMgt: Codeunit "Workflow Webhook Management";
-}
+        }
+    
+
+   

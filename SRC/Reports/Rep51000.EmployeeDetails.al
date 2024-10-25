@@ -1,8 +1,4 @@
-namespace YardManagement.YardManagement;
 
-using Microsoft.HumanResources.Employee;
-using Microsoft.Foundation.Company;
-using Microsoft.Foundation.Address;
 
 report 51000 "Employee Details"
 {
@@ -20,35 +16,35 @@ report 51000 "Employee Details"
             {
             }
 
-             column(COMPANYNAME; COMPANYPROPERTY.DisplayName())
+            column(COMPANYNAME; COMPANYPROPERTY.DisplayName())
             {
             }
-            column(Logo;CompanyInformation.Picture)
+            column(Logo; CompanyInformation.Picture)
             {
-                
+
             }
-            Column(Address;CompanyInformation.Address)
+            Column(Address; CompanyInformation.Address)
             {
-                   IncludeCaption = true;
+                IncludeCaption = true;
             }
-              Column(Home_Page;CompanyInformation."Home Page")
+            Column(Home_Page; CompanyInformation."Home Page")
             {
-                 IncludeCaption = true;
+                IncludeCaption = true;
             }
-              Column(City;CompanyInformation.City)
+            Column(City; CompanyInformation.City)
             {
-                  IncludeCaption = true;
+                IncludeCaption = true;
             }
-              Column(Phone_Number;CompanyInformation."Phone No.")
+            Column(Phone_Number; CompanyInformation."Phone No.")
             {
-                  IncludeCaption = true;
+                IncludeCaption = true;
             }
-            column(Mailing;CompanyInformation."E-Mail")
+            column(Mailing; CompanyInformation."E-Mail")
             {
-                 IncludeCaption = true;
+                IncludeCaption = true;
             }
 
-            column(Postal_Code;CompanyInformation."Post Code")
+            column(Postal_Code; CompanyInformation."Post Code")
             {
 
             }
@@ -58,18 +54,18 @@ report 51000 "Employee Details"
             column(No; "No.")
             {
             }
-           
+
             column(FirstName; "First Name")
             {
             }
-            column(Date_of_Birth; Format("Birth Date",0,4))
+            column(Date_of_Birth; Format("Birth Date", 0, 4))
             {
             }
             column(ID_Number; "ID Number")
             {
 
             }
-            
+
             column(Status; Status)
             {
 
@@ -79,7 +75,7 @@ report 51000 "Employee Details"
             }
             column(Yard_Branch; "Yard Branch")
             {
-                    IncludeCaption = true;
+                IncludeCaption = true;
             }
             column(EmployeeAddr_1_; EmployeeAddr[1])
             {
@@ -107,7 +103,7 @@ report 51000 "Employee Details"
             column(Employee_PagerCaption; FieldCaption(Pager))
             {
             }
-             column(Employee_Pager; Pager)
+            column(Employee_Pager; Pager)
             {
             }
             column(age; AgeCalc.CalculateAge(Today, "Birth Date"))
@@ -141,12 +137,13 @@ report 51000 "Employee Details"
         RecPerPageNum: Integer;
         GroupNo: Integer;
         CompanyInformation: Record "Company Information";
-        trigger OnPreReport()
-        begin
-            CompanyInformation.Get();   
-            CompanyInformation.CalcFields(CompanyInformation.Picture);
+
+    trigger OnPreReport()
+    begin
+        CompanyInformation.Get();
+        CompanyInformation.CalcFields(CompanyInformation.Picture);
 
 
-        end;
+    end;
 
 }

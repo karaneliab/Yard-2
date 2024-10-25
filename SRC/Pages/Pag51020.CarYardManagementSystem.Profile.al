@@ -6,7 +6,7 @@ page 51020 "Car Yard Management "
     ApplicationArea = Basic, Suite;
 
 
-    layout                                                                                                                                                                                                                                                                                                                                                                                                          
+    layout
     {
         area(RoleCenter)
         {
@@ -14,8 +14,8 @@ page 51020 "Car Yard Management "
             {
                 ApplicationArea = All;
             }
-            
-           
+
+
             part("PostedSalesInvoice"; "Posted Sales Invoice Subform")
             {
                 ApplicationArea = All;
@@ -143,14 +143,14 @@ page 51020 "Car Yard Management "
                 {
                     action("Car receipt List")
                     {
-                        RunObject = Page "recieving List";
+                        RunObject = Page "Recieving List";
                         ApplicationArea = All;
                         Caption = 'Car receipt List';
 
                     }
                     action("Open Receipt List")
                     {
-                        RunObject = Page "recieving List";
+                        RunObject = Page "Recieving List";
                         ApplicationArea = Basic, Suite;
                         Caption = 'Open Receipt List';
                         RunPageLink = Status = const(Open);
@@ -161,7 +161,7 @@ page 51020 "Car Yard Management "
                     {
                         // RunObject = Page "Posted Purchase Invoices";
                         ApplicationArea = All;
-                        RunObject = Page "recieving List";
+                        RunObject = Page "Recieving List";
                         Caption = 'Car Receipt List Pending Approval';
                         ToolTip = 'Specifes the cars receipt list of Pending Approval';
                         RunPageLink = Status = const("Pending Approval");
@@ -169,7 +169,7 @@ page 51020 "Car Yard Management "
                     }
                     action("Approved Receipt List")
                     {
-                        RunObject = Page "recieving List";
+                        RunObject = Page "Recieving List";
                         ApplicationArea = All;
                         RunPageLink = Status = Const(Approved);
                         RunPageMode = View;

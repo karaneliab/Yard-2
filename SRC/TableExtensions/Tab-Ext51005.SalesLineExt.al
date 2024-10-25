@@ -1,11 +1,4 @@
-namespace YardManagement.YardManagement;
 
-using Microsoft.Sales.Document;
-using Microsoft.FixedAssets.Depreciation;
-using Microsoft.Sales.History;
-using Microsoft.FixedAssets.FixedAsset;
-using Microsoft.Sales.Customer;
-using Microsoft.CRM.Team;
 
 tableextension 51005 SalesLineExt extends "Sales Line"
 {
@@ -21,7 +14,7 @@ tableextension 51005 SalesLineExt extends "Sales Line"
         {
             Caption = '% Commission';
             Editable = false;
-            
+
             trigger OnValidate()
             begin
 
@@ -30,9 +23,9 @@ tableextension 51005 SalesLineExt extends "Sales Line"
         field(90102; AcquisitionCost; Decimal)
         {
             Caption = 'Acquisition Cost';
-           
+
             Editable = false;
-          
+
         }
         field(90103; Employee; Text[250])
         {
@@ -78,7 +71,7 @@ tableextension 51005 SalesLineExt extends "Sales Line"
                             AcquisitionCost := FADepreciationBook."Book Value";
                         end;
                         Validate("CommissionPac");
-                        
+
                     end;
                 end;
 
@@ -88,7 +81,7 @@ tableextension 51005 SalesLineExt extends "Sales Line"
         {
             trigger OnAfterValidate()
             begin
-                CommisionCalculate(); 
+                CommisionCalculate();
             end;
         }
     }
@@ -97,19 +90,18 @@ tableextension 51005 SalesLineExt extends "Sales Line"
     var
         CarMakeCommission: Record "Commission Rate";
         FixedAsset: Record "Fixed Asset";
-        Profit, CommissionAmount: Decimal;
+        Profit, CommissionAmount : Decimal;
     begin
-        
+
         if FixedAsset.Get("No.") then begin
-            
+
 
             if CarMakeCommission.Get(Make) then begin
                 "CommissionPac" := CarMakeCommission."Commission Rate";
 
-                // Calculate the profit (Unit Price - Acquisition Cost)
                 Profit := "Unit Price" - AcquisitionCost;
 
-                // Ensure the profit is positive before calculating commission
+
                 if Profit > 0 then
                     CommissionAmount := CalculateCommissionAmount("CommissionPac", Profit)
                 else
@@ -117,7 +109,7 @@ tableextension 51005 SalesLineExt extends "Sales Line"
 
                 Commission := CommissionAmount;
             end else begin
-                "CommissionPac" := 0; 
+                "CommissionPac" := 0;
                 Commission := 0;
             end;
         end else begin
@@ -126,28 +118,28 @@ tableextension 51005 SalesLineExt extends "Sales Line"
     end;
 
     procedure CalculateCommissionAmount("CommissionPac": Decimal; Profit: Decimal): Decimal
-    
+
     begin
-        // Calculate the commission amount based on the percentage and profit
+
         Profit := "Unit Price" - AcquisitionCost;
-        // exit((Profit * ("CommissionPac" / 100)));
+
         exit(ROUND(Profit * ("CommissionPac" / 100), 0.01))
     end;
 
 }
-tableextension 51007 "SalesInvoiceLineExt" extends"Sales Invoice Line"
+tableextension 51007 "SalesInvoiceLineExt" extends "Sales Invoice Line"
 {
     fields
     {
-        field(90100;Make;Text[250])
+        field(90100; Make; Text[250])
         {
             Caption = 'Make';
         }
-        field(90101;CommissionPac;Decimal)
+        field(90101; CommissionPac; Decimal)
         {
             Caption = 'CommissionPac';
         }
-        field(90102;"Acquisition cost";Decimal)
+        field(90102; "Acquisition cost"; Decimal)
         {
             Caption = 'Acquisition cost';
         }

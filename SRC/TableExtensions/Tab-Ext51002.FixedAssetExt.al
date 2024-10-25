@@ -35,16 +35,16 @@ tableextension 51002 "Fixed Asset Ext" extends "Fixed Asset"
             DataClassification = ToBeClassified;
             trigger OnValidate()
             var
-                CarLineRec: Record "Car Line"; 
+                CarLineRec: Record "Car Line";
                 FixedAssetRec: Record "Fixed Asset";
             begin
                 if ChassisNo <> xRec.ChassisNo then begin
-                   
+
                     if CarLineRec.Get(CarLineRec."Chassis Number") then
                         Error('A car with the provided chassis number %1 already exists in the Car Line table.', CarLineRec."Chassis Number");
 
                     // Check if the chassis number exists in the Fixed Asset table
-                    FixedAssetRec.SetRange(ChassisNo,CarLineRec."Chassis Number");
+                    FixedAssetRec.SetRange(ChassisNo, CarLineRec."Chassis Number");
                     if FixedAssetRec.FindFirst() then
                         Error('A car with the provided chassis number %1 already exists in the Fixed Asset table.', ChassisNo);
                 end;
@@ -79,7 +79,7 @@ tableextension 51002 "Fixed Asset Ext" extends "Fixed Asset"
         {
             Caption = 'Buying Price';
             FieldClass = FlowField;
-           
+
             CalcFormula = sum("Car Line"."Buying Price" where("FA No" = FIELD("No.")));
         }
         field(50000; AcquisitionCost; Decimal)
@@ -90,7 +90,7 @@ tableextension 51002 "Fixed Asset Ext" extends "Fixed Asset"
 
             FieldClass = FlowField;
             CalcFormula = lookup("Purch. Inv. Line"."Direct Unit Cost" WHERE("No." = field("No.")));
-   
+
             trigger OnLookup()
             var
                 FADepreciationBook: Record "FA Depreciation Book";
@@ -141,5 +141,5 @@ tableextension 51002 "Fixed Asset Ext" extends "Fixed Asset"
         }
 
     }
-  
+
 }

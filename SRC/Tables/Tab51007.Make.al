@@ -18,12 +18,6 @@ table 51007 "Make"
             DataClassification = CustomerContent;
             Caption = 'Name';
         }
-        // field(107; "No. Series"; Code[20])
-        // {
-        //     Caption = 'No. Series';
-        //     Editable = false;
-        //     TableRelation = Microsoft.Foundation.NoSeries."No. Series";
-        // }
 
     }
 
