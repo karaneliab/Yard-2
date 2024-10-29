@@ -1,4 +1,4 @@
-page 51011 "Left side"
+page 41011 "Left side"
 {
     // ApplicationArea = All;
     Caption = 'Specific Car Left Side Details';

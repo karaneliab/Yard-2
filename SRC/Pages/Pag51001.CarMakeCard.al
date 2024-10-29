@@ -1,4 +1,4 @@
-page 51001 "Car Make Card"
+page 41001 "Car Make Card"
 {
     ApplicationArea = All;
     Caption = 'Make Card';
@@ -44,6 +44,11 @@ page 51001 "Car Make Card"
                 RunObject = Page "Car Model";
                
             }
+           
         }
     }
+    
+    var 
+    WordSplitting: codeunit WordSplitting;
+    
 }

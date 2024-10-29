@@ -1,4 +1,4 @@
-pageextension 51005 "Purchases&Payables" extends "Purchases & Payables Setup"
+pageextension 41005 "Purchases&Payables" extends "Purchases & Payables Setup"
 {
     layout
     {

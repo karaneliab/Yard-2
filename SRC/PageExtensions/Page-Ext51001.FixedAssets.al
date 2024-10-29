@@ -1,4 +1,4 @@
-pageextension 51001 "Fixed Assets" extends "Fixed Asset Card"
+pageextension 41001 "Fixed Assets" extends "Fixed Asset Card"
 {
     layout
     {
@@ -111,4 +111,41 @@ pageextension 51001 "Fixed Assets" extends "Fixed Asset Card"
     }
 
 
+}
+pageextension 41106 "Fixed Aassets" extends "Fixed Asset List"
+{
+    layout
+    {
+        // Add changes to page layout here
+    }
+
+    actions
+    {
+
+        addafter(History)
+        {
+
+            group(DetailedFixedAsset)
+            {
+                Caption = 'Detailed Fixed Asset';
+                action(GetFixedAssetDetails)
+                {
+                    ApplicationArea = All;
+
+                    Promoted = true;
+                    Caption = 'Get Fixed Asset Details';
+                    trigger OnAction()
+                    var
+                        GetDictValuess: Codeunit FixedAssetDict;
+                    begin
+                        GetDictValuess.GetDictValues()
+                    end;
+
+                }
+            }
+        }
+    }
+
+    var
+        myInt: Integer;
 }

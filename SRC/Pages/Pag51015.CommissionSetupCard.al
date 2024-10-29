@@ -1,4 +1,4 @@
-page 51015 "Commission Setup Card"
+page 41015 "Commission Setup Card"
 {
     ApplicationArea = All;
     Caption = 'Commission Setup Card';

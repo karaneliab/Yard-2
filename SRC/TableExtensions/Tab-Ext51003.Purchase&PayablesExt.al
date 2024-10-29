@@ -1,4 +1,4 @@
-tableextension 51003 "Purchase&PayablesExt" extends "Purchases & Payables Setup"
+tableextension 41003 "Purchase&PayablesExt" extends "Purchases & Payables Setup"
 {
     fields
     {

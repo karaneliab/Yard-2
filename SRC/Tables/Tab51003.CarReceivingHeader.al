@@ -1,4 +1,4 @@
-table 51003 "Car Recieving Header"
+table 41003 "Car Recieving Header"
 {
     DataClassification = ToBeClassified;
     DrillDownPageId = "Recieving List";

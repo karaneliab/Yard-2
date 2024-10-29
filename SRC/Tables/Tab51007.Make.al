@@ -1,5 +1,5 @@
 
-table 51007 "Make"
+table 41007 "Make"
 {
     DataClassification = ToBeClassified;
     DrillDownPageId = "Car Make Card";

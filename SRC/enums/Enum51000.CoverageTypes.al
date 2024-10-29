@@ -1,4 +1,4 @@
-enum 51000 "Coverage Types"
+enum 41000 "Coverage Types"
 {
     Extensible = false;
     

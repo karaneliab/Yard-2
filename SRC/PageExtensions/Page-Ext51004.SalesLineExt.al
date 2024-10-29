@@ -1,4 +1,4 @@
-pageextension 51004 SalesLineExt extends "Sales Invoice Subform"
+pageextension 41004 SalesLineExt extends "Sales Invoice Subform"
 {
     layout
     {
@@ -63,7 +63,7 @@ pageextension 51004 SalesLineExt extends "Sales Invoice Subform"
 
 
 }
-pageextension 51007 SalesLineList extends "Sales Lines"
+pageextension 41007 SalesLineList extends "Sales Lines"
 {
     layout
     {
@@ -84,7 +84,7 @@ pageextension 51007 SalesLineList extends "Sales Lines"
         }
     }
 }
-pageextension 51008 PostSalesLine extends "Posted Sales Invoice Lines"
+pageextension 41008 PostSalesLine extends "Posted Sales Invoice Lines"
 {
     layout
     {

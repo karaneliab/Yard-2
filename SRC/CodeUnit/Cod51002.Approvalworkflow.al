@@ -77,7 +77,7 @@
 //     local procedure OnRejectCarApprovalRequest(var ApprovalEntry: Record "Approval Entry")
 //     var
 //         CarReceivingHeader: Record "Car Recieving Header";
-//         Recref: RecordRef;
+//          
 //     begin
 //         Recref.Get(ApprovalEntry."Record ID to Approve");
 //         case

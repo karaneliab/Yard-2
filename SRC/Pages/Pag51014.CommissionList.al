@@ -1,4 +1,4 @@
-page 51014 "Commission List"
+page 41014 "Commission List"
 {
     ApplicationArea = All;
     Caption = 'Commission List';

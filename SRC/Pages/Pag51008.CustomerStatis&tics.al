@@ -1,4 +1,4 @@
-page 51008 "Customer Statis&tics"
+page 41008 "Customer Statis&tics"
 {
     PageType = CardPart;
     ApplicationArea = All;

@@ -1,6 +1,6 @@
 
 
-codeunit 51005 ImageManagement
+codeunit 41005 ImageManagement
 {
     procedure ImportPicture("Fixed Asset": Record "Fixed Asset")
     var

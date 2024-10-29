@@ -1,4 +1,4 @@
-page 51019 "Right Side"
+page 41019 "Right Side"
 {
     // ApplicationArea = All;
     Caption = 'Specific Right Side Snippet/Picture';

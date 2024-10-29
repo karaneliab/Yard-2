@@ -1,4 +1,4 @@
-codeunit 51003 CommLedgEntry
+codeunit 41003 CommLedgEntry
 {
     TableNo = "Commission Ledger Entries";
 

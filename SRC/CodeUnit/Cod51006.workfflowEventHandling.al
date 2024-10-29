@@ -69,7 +69,7 @@
 
 
 //     var
-//         WorkflowManagement: Codeunit "Workflow Management";
+//          
 //         WorkflowSendForCarApprovalEventDescTxt: Label 'Approval for %1 of Car Receiving Header is Requested.';
 //         WorkflowCancelForCarApprovalEventDescTxt: Label 'Approval for  %2  of Car Receiving Header  cancelled.';
 // }

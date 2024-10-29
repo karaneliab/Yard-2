@@ -1,4 +1,4 @@
-table 51005 "Commission Rate"
+table 41005 "Commission Rate"
 {
     Caption = 'Commission Rate';
     DataClassification = ToBeClassified;

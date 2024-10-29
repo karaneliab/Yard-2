@@ -1,6 +1,6 @@
 
 
-report 51000 "Employee Details"
+report 41000 "Employee Details"
 {
     ApplicationArea = All;
     Caption = 'Employee Details';

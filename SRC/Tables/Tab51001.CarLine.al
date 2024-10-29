@@ -1,4 +1,4 @@
-table 51001 "Car Line"
+table 41001 "Car Line"
 {
     DataClassification = CustomerContent;
 

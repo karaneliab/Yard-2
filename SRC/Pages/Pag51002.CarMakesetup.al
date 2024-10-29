@@ -1,10 +1,11 @@
-page 51002 "Car Make setup"
+page 41002 "Car Make setup"
 {
     ApplicationArea = All;
     Caption = 'Car Make setup';
     PageType = List;
     SourceTable = "Make";
     UsageCategory = Lists;
+    CardPageId = "Car Make Card";
 
     layout
     {

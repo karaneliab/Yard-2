@@ -1,4 +1,4 @@
-page 51000 "Back Side"
+page 41000 "Back Side"
 {
     // ApplicationArea = All;
     Caption = 'Specific Back Side Details';

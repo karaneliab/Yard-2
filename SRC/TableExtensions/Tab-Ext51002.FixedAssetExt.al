@@ -1,4 +1,4 @@
-tableextension 51002 "Fixed Asset Ext" extends "Fixed Asset"
+tableextension 41002 "Fixed Asset Ext" extends "Fixed Asset"
 {
     LookupPageId = "Fixed Asset Card";
     DrillDownPageId = "Fixed Asset Card";

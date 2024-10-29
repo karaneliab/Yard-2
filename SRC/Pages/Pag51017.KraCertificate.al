@@ -1,4 +1,4 @@
-page 51017 "Kra Certificate"
+page 41017 "Kra Certificate"
 {
     // ApplicationArea = All;
     Caption = 'Kra Pin Certificate';

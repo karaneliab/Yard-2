@@ -1,5 +1,5 @@
 
-page 51016 "Specific car details"
+page 41016 "Specific car details"
 {
  
     Caption = 'Front Side Details';

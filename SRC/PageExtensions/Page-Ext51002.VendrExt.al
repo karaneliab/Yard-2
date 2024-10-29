@@ -1,4 +1,4 @@
-pageextension 51002 VendrExt extends "Vendor Card"
+pageextension 41002 VendrExt extends "Vendor Card"
 {
     layout
     {

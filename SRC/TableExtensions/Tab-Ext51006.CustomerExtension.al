@@ -1,5 +1,5 @@
 
-tableextension 51006 "Customer Extension" extends Customer
+tableextension 41006 "Customer Extension" extends Customer
 {
     fields
     {

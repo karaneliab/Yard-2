@@ -1,4 +1,4 @@
-tableextension 51001 "Employee Ext" extends Employee
+tableextension 41001 "Employee Ext" extends Employee
 {
     fields
     {

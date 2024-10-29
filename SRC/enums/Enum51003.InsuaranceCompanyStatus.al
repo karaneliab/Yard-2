@@ -1,4 +1,4 @@
-enum 51003 "Insuarance Company Status"
+enum 41003 "Insuarance Company Status"
 {
     Extensible = false;
     

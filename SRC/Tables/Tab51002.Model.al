@@ -1,4 +1,4 @@
-table 51002 "Model"
+table 41002 "Model"
 {
     DataClassification = ToBeClassified;
     DrillDownPageId = "Car Model card";

@@ -1,4 +1,4 @@
-xmlport 51002 "Export Car Details"
+xmlport 41002 "Export Car Details"
 {
     Caption = 'Export Car Details';
     Direction = Export;

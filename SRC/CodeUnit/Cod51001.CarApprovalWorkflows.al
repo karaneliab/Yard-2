@@ -1,4 +1,4 @@
-codeunit 51001 "Car Approval Workflows"
+codeunit 41001 "Car Approval Workflows"
 {
     procedure CheckCarReceivingApprovalsWorkflowEnabled(var Recref: RecordRef): Boolean
     begin

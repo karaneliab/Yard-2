@@ -1,4 +1,4 @@
-page 51018 "Id Copy"
+page 41018 "Id Copy"
 {
     // ApplicationArea = All;
     Caption = 'Customer Id Copy';

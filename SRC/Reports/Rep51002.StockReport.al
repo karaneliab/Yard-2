@@ -1,5 +1,5 @@
 
-report 51002 "Stock Report"
+report 41002 "Stock Report"
 {
     ApplicationArea = All;
     Caption = 'Stock Report';

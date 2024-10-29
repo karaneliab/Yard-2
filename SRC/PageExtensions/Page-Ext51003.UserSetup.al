@@ -1,4 +1,4 @@
-pageextension 51003 UserSetup extends "User Setup"
+pageextension 41003 UserSetup extends "User Setup"
 {
      layout
      {

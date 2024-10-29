@@ -1,4 +1,4 @@
-table 51006 "Commission Ledger Entries"
+table 41006 "Commission Ledger Entries"
 {
     Caption = 'Commission Ledger Entries';
     DataClassification = ToBeClassified;

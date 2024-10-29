@@ -1,4 +1,4 @@
-page 51012 "Commission Ledger Entries"
+page 41012 "Commission Ledger Entries"
 {
     ApplicationArea = All;
     Caption = 'Commission Ledger Entries';

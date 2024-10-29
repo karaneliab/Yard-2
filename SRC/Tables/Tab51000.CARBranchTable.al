@@ -1,4 +1,4 @@
-table 51000 "Car Branch Table"
+table 41000 "Car Branch Table"
 {
     DataClassification = ToBeClassified;
 

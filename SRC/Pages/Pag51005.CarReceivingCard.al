@@ -1,4 +1,4 @@
-page 51005 "Car Receiving Card"
+page 41005 "Car Receiving Card"
 {
     ApplicationArea = All;
     Caption = 'Car Receiving Card';
@@ -159,6 +159,13 @@ page 51005 "Car Receiving Card"
                     ExportCars.Run();
 
                 end;
+            }
+             action(WordSplittings)
+            {
+                ApplicationArea = All;
+                Caption = 'Word Splitting';
+                ToolTip = 'Word Splitting';
+                RunObject = codeunit WordSplitting;
             }
            group("Request Approval")
             {

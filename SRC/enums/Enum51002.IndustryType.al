@@ -1,4 +1,4 @@
-enum 51002 "Industry Type"
+enum 41002 "Industry Type"
 {
     Extensible = false;
     

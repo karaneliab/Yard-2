@@ -1,5 +1,5 @@
 
-page 51020 "Car Yard Management "
+page 41020 "Car Yard Management "
 {
     PageType = RoleCenter;
     Caption = 'Car Yard Management Role Center';

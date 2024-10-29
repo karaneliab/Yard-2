@@ -1,5 +1,5 @@
 
-report 51001 "Commission Report"
+report 41001 "Commission Report"
 {
     ApplicationArea = All;
     Caption = 'Commission Report';

@@ -1,4 +1,4 @@
-enum 51001 VendorType
+enum 41001 VendorType
 {
     Extensible = true;
     

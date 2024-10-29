@@ -1,4 +1,4 @@
-page 51004 "Car Model card"
+page 41004 "Car Model card"
 {
     ApplicationArea = All;
     Caption = 'Model card';

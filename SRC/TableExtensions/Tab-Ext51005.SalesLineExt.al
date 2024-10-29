@@ -1,6 +1,6 @@
 
 
-tableextension 51005 SalesLineExt extends "Sales Line"
+tableextension 41005 SalesLineExt extends "Sales Line"
 {
     fields
     {
@@ -127,7 +127,7 @@ tableextension 51005 SalesLineExt extends "Sales Line"
     end;
 
 }
-tableextension 51007 "SalesInvoiceLineExt" extends "Sales Invoice Line"
+tableextension 41007 "SalesInvoiceLineExt" extends "Sales Invoice Line"
 {
     fields
     {
