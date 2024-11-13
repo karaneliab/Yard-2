@@ -27,7 +27,9 @@ report 41000 "Employee Details"
             {
                 IncludeCaption = true;
             }
+#pragma warning disable AL0432
             Column(Home_Page; CompanyInformation."Home Page")
+#pragma warning restore AL0432
             {
                 IncludeCaption = true;
             }
@@ -93,9 +95,9 @@ report 41000 "Employee Details"
             column(PersonalEmail; "Personal Email")
             {
             }
-            column(BasicPay; "Basic Pay")
-            {
-            }
+            // column(BasicPay; "Basic Pay")
+            // {
+            // }
             column(Image; Image)
             {
 

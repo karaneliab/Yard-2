@@ -13,7 +13,8 @@ table 41001 "Car Line"
         field(1; "Document No."; code[20])
         {
             DataClassification = CustomerContent;
-            // TableRelation = "Car Recieving Header";
+            TableRelation = "Car Recieving Header" WHERE(No = field("Document No."));
+
             Caption = 'Document No';
 
         }
@@ -70,7 +71,7 @@ table 41001 "Car Line"
             TableRelation = "Model" where(Make = field("Car Make"));
             ;
         }
-        field(9; "Chassis Number"; Code[40])
+        field(9; "Chassis Number"; CODE[20])
         {
             Caption = 'Chasis Number';
             DataClassification = CustomerContent;
@@ -174,6 +175,10 @@ table 41001 "Car Line"
 
 
         }
+        field(32; "Header Id"; Guid)
+        {
+               
+        }
 
     }
     keys
@@ -198,8 +203,20 @@ table 41001 "Car Line"
         FAClass: Record "FA Class";
         CarReciv: Record "Car Recieving Header";
         Date: Date;
+        Header: Record "Car Recieving Header";
         value: Integer;
     begin
+
+        if not IsNULLGUID("Header Id") then begin
+            IF Header.GetBySystemId("Header Id") then
+                "Document No." := Header.No;
+        end;
+
+        if IsNullGuid("Header Id") and ("Document No." <> '') then begin
+            if Header.Get("Document No.") then
+                "Header Id" := HeadeR.SystemId;
+        end;
+
 
         //* Defaulting FA DEP book
         if FADepreciationBook.FindFirst() then begin
@@ -217,7 +234,7 @@ table 41001 "Car Line"
         end;
         //* Defaulting Car Insurance
         "Car Insured" := true;
-         
+
         //* Defaulting Fa Posting Group
         if FaPostingGroup.FindFirst() then begin
             "FA Posting Group" := FaPostingGroup.Code;
@@ -261,11 +278,12 @@ table 41001 "Car Line"
         "Depreciation Starting Date" := Today;
         "Depreciation Ending Date" := CalcDate('+1Y', "Depreciation Starting Date");
         if "Chassis Number" <> xRec."Chassis Number" then begin
-           
+
             if Exists("Chassis Number") then
                 Error('A car with the provided chassis number %1 already exists in the Car Line table.', "Chassis Number");
         end;
     end;
+
     var
         StatusCannotBeReleasedErr: Label 'status cannot be %1 .', comment = '%1 -  status field value';
         EmployeeStatusErr: Label 'The Employee Is.', Comment = '%1 - status field  value';

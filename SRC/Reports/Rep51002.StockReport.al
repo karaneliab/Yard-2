@@ -26,7 +26,9 @@ report 41002 "Stock Report"
             {
                 IncludeCaption = true;
             }
+#pragma warning disable AL0432
             Column(Home_Page; CompanyInformation."Home Page")
+#pragma warning restore AL0432
             {
                 IncludeCaption = true;
             }

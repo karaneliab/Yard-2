@@ -46,11 +46,11 @@ tableextension 41001 "Employee Ext" extends Employee
 
 
         }
-        field(67990; "Basic Pay"; Decimal)
-        {
-            Caption = 'Basic Pay';
-            DataClassification = CustomerContent;
-        }
+        // field(67990; "Basic Pay"; Decimal)
+        // {
+        //     Caption = 'Basic Pay';
+        //     DataClassification = CustomerContent;
+        // }
         field(77894; "Yard Branch"; Text[250])
         {
             Caption = 'Yard Branch';

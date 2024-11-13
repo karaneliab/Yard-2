@@ -1415,12 +1415,6 @@ End Function
         <Field Name="PersonalEmail">
           <DataField>PersonalEmail</DataField>
         </Field>
-        <Field Name="BasicPay">
-          <DataField>BasicPay</DataField>
-        </Field>
-        <Field Name="BasicPayFormat">
-          <DataField>BasicPayFormat</DataField>
-        </Field>
         <Field Name="Image">
           <DataField>Image</DataField>
         </Field>

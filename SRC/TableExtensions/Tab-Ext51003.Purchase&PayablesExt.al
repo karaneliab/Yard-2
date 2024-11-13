@@ -2,7 +2,7 @@ tableextension 41003 "Purchase&PayablesExt" extends "Purchases & Payables Setup"
 {
     fields
     {
-        field(521923; "Car Receiving Nos."; Code[10])
+        field(521923; "Car Receiving Nos."; Code[20])
         {
             Caption = 'Car Receiving Nos.';
             DataClassification = ToBeClassified;

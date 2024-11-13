@@ -371,7 +371,7 @@ page 41020 "Car Yard Management "
 }
 profile "Car Yard Management System"
 {
-    Caption = 'Car Yard Management';
+    Caption = 'Deft Yard Management';
     RoleCenter = "Car Yard Management ";
 
 

@@ -14,7 +14,7 @@ table 41003 "Car Recieving Header"
 
             trigger OnValidate()
             begin
-                
+
                 if "No" <> xRec."No" THEN begin
                     PurchSetup.Get();
                     PurchSetup.TestField("Car Receiving Nos.");
@@ -34,7 +34,7 @@ table 41003 "Car Recieving Header"
         field(7; Description; Text[250])
         {
             Caption = 'Description';
-            
+
             DataClassification = CustomerContent;
 
 
@@ -93,7 +93,13 @@ table 41003 "Car Recieving Header"
 
         }
     }
-
+    keys
+    {
+        Key(pk; No)
+        {
+            Clustered = true;
+        }
+    }
     // local procedure TestStatus()
     // begin
     //     if Status <> Status::"Approved" then
@@ -121,7 +127,7 @@ table 41003 "Car Recieving Header"
     var
 
         SalesSetup: Record "Sales & Receivables Setup";
-        NoSeries: Codeunit Microsoft.Foundation.NoSeries."No. Series";
+        NoSeries: Codeunit "No. Series";
 
 
     trigger OnInsert()
@@ -129,14 +135,18 @@ table 41003 "Car Recieving Header"
         if "No" = '' then
             PurchSetup.Get();
         PurchSetup.TestField("Car Receiving Nos.");
-        NoSeriesMgt.InitSeries(PurchSetup."Car Receiving Nos.", xRec."No. Series", 0D, "No", "No. Series");
+        if No = '' then
+            No := NoSeriees.GetNextNo(PurchSetup."Car Receiving Nos.", Today);
+
+
 
 
     end;
 
     var
         PurchSetup: Record Microsoft.Purchases.Setup."Purchases & Payables Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriees: codeunit "No. Series";
+        NoSeriesmgt: Codeunit NoSeriesManagement;
 
     trigger OnModify()
     begin
@@ -162,7 +172,7 @@ table 41003 "Car Recieving Header"
         FADepreciationBook: Record "FA Depreciation Book";
         PurchaseLine: Record "Purchase Line";
         PurchaseHeader: Record "Purchase Header";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+
         FASetup: Record "FA Setup";
         NextFANo: Code[20];
         VendorList: List of [Code[20]];
@@ -177,7 +187,7 @@ table 41003 "Car Recieving Header"
 
         if CarLine.FindSet() then begin
             repeat
-               
+
                 if CarLine."Car Make" = '' then
                     Error('Enter the car make details');
                 if CarLine."Car Model" = '' then
@@ -198,7 +208,13 @@ table 41003 "Car Recieving Header"
                     Error('The chassis number %1 already exists in another Car.', CarLine."Chassis Number");
 
 
-                NextFANo := NoSeriesMgt.GetNextNo(FASetup."Fixed Asset Nos.", Header."Date", true);
+                // if NextFANo = ''then                
+                //         NextFANo := NoSeriees.GetNextNo(FASetup."Fixed Asset Nos.", Header."Date");
+                // CarLine."FA No" := NextFANo;
+                NextFANo := NoSeriees.GetNextNo(FASetup."Fixed Asset Nos.", Header."Date");
+                if NextFANo = '' then
+                    Error('No more numbers available in the Fixed Asset No. Series.');
+
                 CarLine."FA No" := NextFANo;
 
                 FixedAsset.Init();

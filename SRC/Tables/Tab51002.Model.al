@@ -59,6 +59,6 @@ table 41002 "Model"
 
     var
         PurchSetup: Record Microsoft.Purchases.Setup."Purchases & Payables Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        // NoSeriesMgt: Codeunit NoSeriesManagement;
 
 }

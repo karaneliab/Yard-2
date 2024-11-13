@@ -60,11 +60,11 @@ pageextension 41000 "Employee card" extends "Employee Card"
         }
         addlast(Payments)
         {
-            field("Basic Pay"; Rec."Basic Pay")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the employee basic pay field.', Comment = '%';
-            }
+            // field("Basic Pay"; Rec."Basic Pay")
+            // {
+            //     ApplicationArea = All;
+            //     ToolTip = 'Specifies the employee basic pay field.', Comment = '%';
+            // }
         }
         addlast("Address & Contact")
         {

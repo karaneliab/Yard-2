@@ -134,3 +134,15 @@
                 //         Page.Run(Page::"Purchase Invoices");
                 // end;
   }
+      procedure AssignCarReceivingNo(var CarReceivingHeader: Record "Car Recieving Header")
+    var
+        PurchSetup: Record "Purchases & Payables Setup";
+        NoSeriees: codeunit "No. Series";
+    begin
+        // Get the Purchases & Payables Setup record to find the No. Series
+         if CarReceivingHeader."No" = '' then
+            PurchSetup.Get();
+        PurchSetup.TestField("Car Receiving Nos.");
+        if CarReceivingHeader.No = '' then
+           CarReceivingHeader.No:=NoSeriees.GetNextNo(PurchSetup."Car Receiving Nos.", Today);
+    end;
