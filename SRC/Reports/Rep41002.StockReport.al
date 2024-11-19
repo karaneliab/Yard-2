@@ -4,7 +4,7 @@ report 41002 "Stock Report"
     ApplicationArea = All;
     Caption = 'Stock Report';
     UsageCategory = ReportsAndAnalysis;
-    RDLCLayout = './src/Reports/Rep51002.StockReport.rdl';
+    RDLCLayout = './src/Reports/Rep41002.StockReport.rdl';
     DefaultLayout = RDLC;
     dataset
     {

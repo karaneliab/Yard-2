@@ -32,6 +32,17 @@ page 41020 "Car Yard Management "
 
     actions
     {
+        area(Embedding)
+        {
+            action("Car r&eceipt List")
+            {
+                RunObject = Page "Recieving List";
+                ApplicationArea = All;
+
+                Caption = 'Car receipt List';
+
+            }
+        }
         area(Creation)
         {
             separator(Action87)
@@ -108,6 +119,7 @@ page 41020 "Car Yard Management "
         }
         area(Sections)
         {
+            
 
             group("Assets Management")
             {
@@ -145,6 +157,7 @@ page 41020 "Car Yard Management "
                     {
                         RunObject = Page "Recieving List";
                         ApplicationArea = All;
+
                         Caption = 'Car receipt List';
 
                     }

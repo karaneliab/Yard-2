@@ -30,7 +30,7 @@ codeunit 41002 "Car Header API Handling mgmt."
                 response.Content.ReadAs(outputString);
                 Message('%1', outputString);
                 ParseCarRecords(OutputString, TempCarRec);
-                
+
             end else
                 Error('Error %1', response.ReasonPhrase);
     end;
@@ -42,7 +42,8 @@ codeunit 41002 "Car Header API Handling mgmt."
         outputString: Text;
         Payload: Text;
         //http://desktop-vji7f4v:7048/BC240/api/publisherName/apiGroup/v2.0/companies(160d44f3-009d-ef11-be11-8c1645648b83)/carHeaders?$expand=carLineS
-        TargetUrl: Label 'http://desktop-vji7f4v:7048/BC240/ODataV4/Company(''Deft%20Yard'')/carheaderspost';
+        //http://desktop-vji7f4v:7048/BC240/api/publisherName/apiGroup/v2.0/companies(160d44f3-009d-ef11-be11-8c1645648b83)/
+        TargetUrl: Label 'http://desktop-vji7f4v:7048/BC240/api/publisherName/apiGroup/v2.0/companies(160d44f3-009d-ef11-be11-8c1645648b83)/carheads';
     begin
 
         GetContentwithHeader(client);
@@ -132,18 +133,22 @@ codeunit 41002 "Car Header API Handling mgmt."
         client: HttpClient;
         outputString: Text;
         Payload: Text;
+        Header: HttpHeaders;
         //http://desktop-vji7f4v:7048/BC240/api/publisherName/apiGroup/v2.0/companies(160d44f3-009d-ef11-be11-8c1645648b83)/carHeaders?$expand=carLines
-        TargetUrl: Label 'http://desktop-vji7f4v:7048/BC240/ODataV4/Company(''Deft%20Yard'')/carheaderspost/%1';
+        TargetUrl: label 'http://desktop-vji7f4v:7048/BC240/api/publisherName/apiGroup/v2.0/companies(160d44f3-009d-ef11-be11-8c1645648b83)/carheads(%1)';
     begin
         GetContentwithHeader(client);
         SetHeaders(Content);
         request.Content(Content);
-        request.SetRequestUri(StrSubstNo(TargetUrl, CarTable.no));
+        request.GetHeaders(Header);
+        Header.Clear();
+        Header.Add('If-Match', '*');
+        request.SetRequestUri(StrSubstNo(TargetUrl, delchr(Format(CarTable.SystemId), '<>', '{}')));
         request.Method := 'DELETE';
         if client.Send(request, response) then
             if response.IsSuccessStatusCode() then begin
                 response.Content.ReadAs(outputString);
-                Message('%1', outputString);
+                Message('Deleted successfully %1', CarTable.description);
 
             end else
                 Error('Error %1', response.ReasonPhrase);

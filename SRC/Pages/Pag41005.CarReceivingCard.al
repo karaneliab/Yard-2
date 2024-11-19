@@ -100,7 +100,7 @@ page 41005 "Car Receiving Card"
                     VendorNo: Code[20];
                     CarRecivHead: Record "Car Recieving Header";
                 begin
-                    if Rec.Status <> Rec.Status::"Pending Approval" then begin
+                    if Rec.Status <> Rec.Status::"Approved" then begin
 
                         if Confirm('The document is not approved. Do you want to send it for approval?', true, false) then begin
                             RecRef.GetTable(Rec);

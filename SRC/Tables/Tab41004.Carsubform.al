@@ -1,17 +1,12 @@
 table 41004 "Car subform Temporary"
 {
     Caption = 'Car subform ';
-    DataClassification = ToBeClassified;
+
     //TableType = Temporary;
 
     fields
     {
-        field(19; "FA No"; code[20])
-        {
-            Caption = 'fixed asset no';
-
-
-        }
+   
         field(1; documentNo; code[20])
         {
 

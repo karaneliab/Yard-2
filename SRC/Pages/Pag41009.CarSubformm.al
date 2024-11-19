@@ -46,10 +46,7 @@ page 41009 "Car Subformm"
                 {
                     Caption = 'Document No';
                 }
-                field(faNo; Rec."FA No")
-                {
-                    Caption = 'fixed asset no';
-                }
+
                 field(receivedFrom; Rec.receivedFrom)
                 {
                     Caption = 'Received From';
@@ -69,9 +66,9 @@ page 41009 "Car Subformm"
     {
         area(Processing)
         {
-            action(GetHeaderData)
+            action(GetLinesData)
             {
-                Caption = 'Get Header Data';
+                Caption = 'Get Lines Data';
                 Image = DataEntry;
                 trigger OnAction()
                 var
@@ -80,7 +77,7 @@ page 41009 "Car Subformm"
                 begin
                     Apis.GetRecords(TempCarRec);
 
-                    // CurrPage.Update();
+                    CurrPage.Update();
                 end;
             }
             action(PostRecords)
@@ -94,45 +91,45 @@ page 41009 "Car Subformm"
                     Apis.PostRecords();
                 end;
             }
-            // action(UpdateRecords)
-            // {
-            //     Caption = 'Update Car Header Data';
-            //     Image = UpdateDescription;
-            //     trigger onAction()
-            //     var
-            //         Apis: Codeunit "Car Header API Handling mgmt.";
-            //     begin
-            //         Apis.PatchRecords(Rec);
-            //     end;
-            // }
-            // action(DeleteRecords)
-            // {
-            //     Caption = 'Delete Car Header  Data';
-            //     Image = Delete;
-            //     trigger onAction()
-            //     var
-            //         Apis: Codeunit "Car Header API Handling mgmt.";
-            //     begin
-            //         Apis.DeleteRecords(Rec);
-            //     end;
-            // }
+            action(UpdateRecords)
+            {
+                Caption = 'Update Car Lines Data';
+                Image = UpdateDescription;
+                trigger onAction()
+                var
+                    Apis: Codeunit "Car Line API Handling Mgmt.";
+                begin
+                    Apis.PatchRecords(Rec);
+                end;
+            }
+            action(DeleteRecords)
+            {
+                Caption = 'Delete Car Lines  Data';
+                Image = Delete;
+                trigger onAction()
+                var
+                    Apis: Codeunit "Car Line API Handling Mgmt.";
+                begin
+                    Apis.DeleteRecords(Rec);
+                end;
+            }
         }
         area(promoted)
         {
-            actionref(get_ref; GetHeaderData) { }
+            actionref(get_ref; GetLinesData) { }
             actionref(post_ref; PostRecords) { }
-            // actionref(update_ref; UpdateRecords) { }
-            // actionref(delete_ref; DeleteRecords) { }
+            actionref(update_ref; UpdateRecords) { }
+            actionref(delete_ref; DeleteRecords) { }
         }
     }
-    trigger OnOpenPage()
+    // trigger OnOpenPage()
 
-    var
-        Apis: Codeunit "Car Line API Handling Mgmt.";
-        TempCarRec: Record "Car subform Temporary";
-    begin
-        Apis.GetRecords(TempCarRec);
+    // var
+    //     Apis: Codeunit "Car Line API Handling Mgmt.";
+    //     TempCarRec: Record "Car subform Temporary";
+    // begin
+    //     Apis.GetRecords(TempCarRec);
 
-        CurrPage.Update();
-    end;
+    //     CurrPage.Update();
+    // end;
 }

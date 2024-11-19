@@ -101,7 +101,7 @@ codeunit 41001 "Car Approval Workflows"
             Database::"Car Recieving Header":
                 begin
                     RecRef.SetTable(CarReciv);
-                    CarReciv.Validate(Status, CarReciv.Status::"Pending Approval");
+                    CarReciv.Validate(Status, CarReciv.Status::"Approved");
                     CarReciv.Modify(true);
                     IsHandled := true;
                     Variant := CarReciv

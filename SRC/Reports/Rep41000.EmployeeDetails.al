@@ -5,7 +5,7 @@ report 41000 "Employee Details"
     ApplicationArea = All;
     Caption = 'Employee Details';
     UsageCategory = ReportsAndAnalysis;
-    RDLCLayout = './SRC/Reports/Rep51000.EmployeeDetails.rdl';
+    RDLCLayout = './SRC/Reports/Rep41000.EmployeeDetails.rdl';
     DefaultLayout = RDLC;
     dataset
     {
@@ -27,9 +27,9 @@ report 41000 "Employee Details"
             {
                 IncludeCaption = true;
             }
-#pragma warning disable AL0432
+
             Column(Home_Page; CompanyInformation."Home Page")
-#pragma warning restore AL0432
+
             {
                 IncludeCaption = true;
             }

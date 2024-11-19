@@ -205,9 +205,9 @@
                               </Paragraphs>
                               <rd:DefaultName>Address</rd:DefaultName>
                               <Top>0.72222in</Top>
-                              <Left>2.39585in</Left>
+                              <Left>2.9028in</Left>
                               <Height>0.17708in</Height>
-                              <Width>2.35417in</Width>
+                              <Width>1.1611in</Width>
                               <ZIndex>3</ZIndex>
                               <Style>
                                 <Border>
@@ -229,6 +229,7 @@
                                       <Value>=First(Fields!Postal_Code.Value)</Value>
                                       <Style>
                                         <FontFamily>Avenir LT Pro 35 Light</FontFamily>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -237,7 +238,7 @@
                               </Paragraphs>
                               <rd:DefaultName>Postal_Code</rd:DefaultName>
                               <Top>0.72222in</Top>
-                              <Left>4.48265in</Left>
+                              <Left>4.72151in</Left>
                               <Height>0.17708in</Height>
                               <Width>1.11111in</Width>
                               <ZIndex>4</ZIndex>
@@ -261,6 +262,7 @@
                                       <Value>=First(Fields!City.Value)</Value>
                                       <Style>
                                         <FontFamily>Avenir LT Pro 35 Light</FontFamily>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -269,7 +271,7 @@
                               </Paragraphs>
                               <rd:DefaultName>City</rd:DefaultName>
                               <Top>0.72222in</Top>
-                              <Left>4.8889in</Left>
+                              <Left>5.12431in</Left>
                               <Height>0.17708in</Height>
                               <Width>0.92708in</Width>
                               <ZIndex>5</ZIndex>
@@ -339,7 +341,7 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox6</rd:DefaultName>
                               <Top>0.72222in</Top>
-                              <Left>1.85418in</Left>
+                              <Left>2.23613in</Left>
                               <Height>0.17708in</Height>
                               <Width>0.66667in</Width>
                               <ZIndex>7</ZIndex>
@@ -605,7 +607,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>Basic Pay</Value>
+                                                    <Value>Status</Value>
                                                     <Style>
                                                       <FontFamily>Avenir LT Pro 35 Light</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -833,14 +835,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="BasicPay">
+                                          <Textbox Name="Status1">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!BasicPay.Value</Value>
+                                                    <Value>=Fields!Status.Value</Value>
                                                     <Style>
                                                       <FontFamily>Avenir LT Pro 35 Light</FontFamily>
                                                       <FontSize>9pt</FontSize>
@@ -852,7 +854,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>BasicPay</rd:DefaultName>
+                                            <rd:DefaultName>Status1</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>None</Style>
@@ -1104,6 +1106,43 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <Textbox Name="Textbox13">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>   Postal code:</Value>
+                                      <Style>
+                                        <FontFamily>Avenir LT Pro 35 Light</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox6</rd:DefaultName>
+                              <Top>0.72222in</Top>
+                              <Left>3.89652in</Left>
+                              <Height>0.17708in</Height>
+                              <Width>0.84375in</Width>
+                              <ZIndex>16</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
                           </ReportItems>
                           <KeepTogether>true</KeepTogether>
                           <Style>
@@ -1112,6 +1151,7 @@
                             </Border>
                           </Style>
                         </Rectangle>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>

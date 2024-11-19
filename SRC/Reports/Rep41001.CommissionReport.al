@@ -4,7 +4,7 @@ report 41001 "Commission Report"
     ApplicationArea = All;
     Caption = 'Commission Report';
     UsageCategory = ReportsAndAnalysis;
-    RDLCLayout = './src/Reports/Rep51001.CommissionReport.rdl';
+    RDLCLayout = './src/Reports/Rep41001.CommissionReport.rdl';
     DefaultLayout = RDLC;
     dataset
     {
